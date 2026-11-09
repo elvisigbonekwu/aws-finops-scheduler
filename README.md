@@ -54,32 +54,32 @@ aws-finops-scheduler/
 
 Follow these steps to deploy the entire automation engine into your AWS account from scratch.
 
-* **Step 1:** Resource Tagging StrategyThe engine utilizes resource-based tagging to safely target non-production assets without hardcoding identifiers.
+**Step 1:** Resource Tagging StrategyThe engine utilizes resource-based tagging to safely target non-production assets without hardcoding identifiers.
 
 - Navigate to the EC2 Console or RDS Console.
 - Select your target dev resource and assign the following tags:
-~ Key: Environment | Value: dev
-~ Key: Autoshutdown | Value: True
+  Key: Environment | Value: dev
+  Key: Autoshutdown | Value: True
 
-* **Step 2:** Create the IAM Execution RoleTo give your Lambda function permissions to manage your EC2 instances, RDS databases, and CloudWatch logs:
+**Step 2:** Create the IAM Execution RoleTo give your Lambda function permissions to manage your EC2 instances, RDS databases, and CloudWatch logs:
 - Open the IAM Console > Roles > Create role.
 - Select AWS service as the trusted entity type, and choose Lambda as the service.
 - Attach the necessary permissions (using the permissions from iam_policy.json or selecting the required EC2/RDS/CloudWatch actions during creation).
 - Attach the AWS managed policy AWSLambdaBasicExecutionRole so it can write logs to CloudWatch.
 - Name the role AutoSchedulerExecutionRole and complete creation.
 
-* **Step 3:** Deploy the AWS Lambda Function
+**Step 3:** Deploy the AWS Lambda Function
 - Navigate to the AWS Lambda Console > Click Create function.
 - Choose Author from scratch:
-~ Function name: AutoSchedulerEngine
-~ Runtime: Python 3.12
-~ Architecture: x86_64 (or arm64)
-~ Execution role: Select Use an existing role and choose AutoSchedulerExecutionRole.
+  Function name: AutoSchedulerEngine
+  Runtime: Python 3.12
+  Architecture: x86_64 (or arm64)
+  Execution role: Select Use an existing role and choose AutoSchedulerExecutionRole.
 - Click Create function.
 - In the code editor, paste the contents of lambda_function.py.
 - Click Deploy to save changes.
 
-* **Step 4:** Configure EventBridge Schedulers (Nightly & Morning)
+**Step 4:** Configure EventBridge Schedulers (Nightly & Morning)
 Create two separate event schedules in Amazon EventBridge Scheduler targeting your Lambda function.
 1. Nightly Stop Schedule:
 - Name: Nightly-Stop-NonProdSchedule 
