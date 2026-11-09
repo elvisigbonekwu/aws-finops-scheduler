@@ -32,16 +32,16 @@ This event-driven serverless architecture automates resource state lifecycles to
                         ▼                                                                                               ▼
              (Stops / Starts Instances)                                                                      (Stops / Starts Databases)
 ```
-Core Technologies
-Compute Engine: AWS Lambda (Python 3.12 utilizing Boto3 SDK)
+## Core Technologies
+* **Compute Engine:** AWS Lambda (Python 3.12 utilizing Boto3 SDK)
 
-Trigger/Orchestration: Amazon EventBridge Scheduler (Cron expressions with custom JSON payloads)
+* **Trigger/Orchestration:** Amazon EventBridge Scheduler (Cron expressions with custom JSON payloads)
 
-Security & Access Control: AWS IAM (Least-privilege security policy implementation)
+* **Security & Access Control:** AWS IAM (Least-privilege security policy implementation)
 
-Observability & Auditing: Amazon CloudWatch Logs (Centralized execution tracking and log streams)
+* **Observability & Auditing:** Amazon CloudWatch Logs (Centralized execution tracking and log streams)
 
-📂 Repository Structure
+## 📂 Repository Structure
 
 ```text
 aws-finops-scheduler/
@@ -50,25 +50,25 @@ aws-finops-scheduler/
 ├── iam_policy.json          # Least-privilege IAM permissions document
 └── README.md                # Comprehensive deployment and architecture guide
 ```
-📋 Comprehensive Deployment & Setup Guide
+## 📋 Comprehensive Deployment & Setup Guide
 
 Follow these steps to deploy the entire automation engine into your AWS account from scratch.
 
-Step 1: Resource Tagging StrategyThe engine utilizes resource-based tagging to safely target non-production assets without hardcoding identifiers.
+* **Step 1:** Resource Tagging StrategyThe engine utilizes resource-based tagging to safely target non-production assets without hardcoding identifiers.
 
 - Navigate to the EC2 Console or RDS Console.
 - Select your target dev resource and assign the following tags:
 ~ Key: Environment | Value: dev
 ~ Key: Autoshutdown | Value: True
 
-Step 2: Create the IAM Execution RoleTo give your Lambda function permissions to manage your EC2 instances, RDS databases, and CloudWatch logs:
+* **Step 2:** Create the IAM Execution RoleTo give your Lambda function permissions to manage your EC2 instances, RDS databases, and CloudWatch logs:
 - Open the IAM Console > Roles > Create role.
 - Select AWS service as the trusted entity type, and choose Lambda as the service.
 - Attach the necessary permissions (using the permissions from iam_policy.json or selecting the required EC2/RDS/CloudWatch actions during creation).
 - Attach the AWS managed policy AWSLambdaBasicExecutionRole so it can write logs to CloudWatch.
 - Name the role AutoSchedulerExecutionRole and complete creation.
 
-Step 3: Deploy the AWS Lambda Function
+* **Step 3:** Deploy the AWS Lambda Function
 - Navigate to the AWS Lambda Console > Click Create function.
 - Choose Author from scratch:
 ~ Function name: AutoSchedulerEngine
@@ -79,7 +79,7 @@ Step 3: Deploy the AWS Lambda Function
 - In the code editor, paste the contents of lambda_function.py.
 - Click Deploy to save changes.
 
-Step 4: Configure EventBridge Schedulers (Nightly & Morning)
+* **Step 4:** Configure EventBridge Schedulers (Nightly & Morning)
 Create two separate event schedules in Amazon EventBridge Scheduler targeting your Lambda function.
 1. Nightly Stop Schedule:
 - Name: Nightly-Stop-NonProdSchedule 
@@ -101,15 +101,15 @@ Create two separate event schedules in Amazon EventBridge Scheduler targeting yo
 ```
 { "action": "START" }```
 
-🔬 Testing & Validation
-1. Manual Dry-Run (Lambda Console):
+## 🔬 Testing & Validation
+1. **Manual Dry-Run (Lambda Console):**
 - Go to the Test tab in your Lambda function.
 - Create a test event named TestStop with payload: {"action": "STOP"} and click Test.
 - Repeat with {"action": "START"} to verify state restoration.
 
-2. Observability & CloudWatch Audit Logs:
+2. **Observability & CloudWatch Audit Logs:**
 - Navigate to Amazon CloudWatch > Log groups > /aws/lambda/AutoSchedulerEngine.
 - Review execution output streams to confirm successful resource filtering and state flags ([SUCCESS] Stopped EC2 instances...).
 
-🤝 Contributing & Feedback
+## 🤝Contributing & Feedback
 Contributions, issues, and feature requests are welcome! Feel free to check issues or submit a pull request.
