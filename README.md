@@ -31,7 +31,7 @@ This event-driven serverless architecture automates resource state lifecycles to
                         │                                                                                               │
                         ▼                                                                                               ▼
              (Stops / Starts Instances)                                                                      (Stops / Starts Databases)
-
+```
 Core Technologies
 Compute Engine: AWS Lambda (Python 3.12 utilizing Boto3 SDK)
 
@@ -49,7 +49,7 @@ aws-finops-scheduler/
 ├── lambda_function.py       # Core automation script handling EC2 and RDS state transitions
 ├── iam_policy.json          # Least-privilege IAM permissions document
 └── README.md                # Comprehensive deployment and architecture guide
-
+```
 📋 Comprehensive Deployment & Setup Guide
 
 Follow these steps to deploy the entire automation engine into your AWS account from scratch.
@@ -75,7 +75,7 @@ Step 3: Deploy the AWS Lambda Function
 ~ Runtime: Python 3.12
 ~ Architecture: x86_64 (or arm64)
 ~ Execution role: Select Use an existing role and choose AutoSchedulerExecutionRole.
--Click Create function.
+- Click Create function.
 - In the code editor, paste the contents of lambda_function.py.
 - Click Deploy to save changes.
 
@@ -88,7 +88,8 @@ Create two separate event schedules in Amazon EventBridge Scheduler targeting yo
 - Target API: AWS Lambda > InvokeLambda 
 - Function: AutoSchedulerEngine
 - Payload (JSON):
-   { "action": "STOP" }
+```
+   { "action": "STOP" } ```
 
 2. Morning Start Schedule:
 - Name: Morning-Start-NonProdSchedule 
@@ -97,7 +98,8 @@ Create two separate event schedules in Amazon EventBridge Scheduler targeting yo
 - Target API: AWS Lambda > InvokeLambda 
 - Function: AutoSchedulerEngine
 - Payload (JSON):
-{ "action": "START" }
+```
+{ "action": "START" }```
 
 🔬 Testing & Validation
 1. Manual Dry-Run (Lambda Console):
