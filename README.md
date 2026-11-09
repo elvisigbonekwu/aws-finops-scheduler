@@ -5,7 +5,7 @@
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An enterprise-grade, serverless cloud cost-optimization engine built on AWS. This automation utility dynamically discovers, gracefully shuts down and boots up non-production workloads (EC2 instances and RDS databases) based on customized operational schedules, eliminating idle cloud waste.
+An enterprise-grade, serverless cloud cost-optimization engine built on AWS. This automation utility dynamically discovers, gracefully shuts down, and boots up non-production workloads (EC2 instances and RDS databases) based on customized operational schedules, eliminating idle cloud waste.
 
 ---
 
