@@ -88,9 +88,9 @@ Create two separate event schedules in Amazon EventBridge Scheduler targeting yo
 - Cron Expression (10:00 PM weekdays): cron(0 22 ? * MON-FRI *)
 - Target API: AWS Lambda > InvokeLambda 
 - Function: AutoSchedulerEngine
-- Payload ```(JSON):
+- Payload (JSON):
 
-   { "action": "STOP" } ```
+{ "action": "STOP" }
 
 2. **Morning Start Schedule:**
 - Name: Morning-Start-NonProdSchedule 
@@ -98,9 +98,9 @@ Create two separate event schedules in Amazon EventBridge Scheduler targeting yo
 - Cron Expression (7:00 AM weekdays): cron(0 7 ? * MON-FRI *)
 - Target API: AWS Lambda > InvokeLambda 
 - Function: AutoSchedulerEngine
-- Payload ```(JSON):
+- Payload (JSON):
 
-{ "action": "START" }```
+{ "action": "START" }
 
 ## 🔬 Testing & Validation
 1. **Manual Dry-Run (Lambda Console):**
