@@ -112,5 +112,7 @@ Create two separate event schedules in Amazon EventBridge Scheduler targeting yo
 - Navigate to Amazon CloudWatch > Log groups > /aws/lambda/AutoSchedulerEngine.
 - Review execution output streams to confirm successful resource filtering and state flags ([SUCCESS] Stopped EC2 instances...).
 
-## 🤝Contributing & Feedback
-Contributions, issues, and feature requests are welcome! Feel free to check issues or submit a pull request.
+## 👤 Author
+* **Elvis Igbonekwu** 
+  * GitHub: [@elvisigbonekwu](https://github.com/elvisigbonekwu)
+  * LinkedIn: [(https://www.linkedin.com/in/elvis-igbonekwu-2200b9287?utm_source=share_via&utm_content=profile&utm_medium=member_android)]
